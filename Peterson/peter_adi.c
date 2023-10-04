@@ -18,7 +18,7 @@ void lock(int self)
     flag[self] = 1;
     turn = 1-self;
     count++;
-     printf("\nValue of count: %d\n",count);
+     printf("\n\tValue of count: %d\n\n",count);
     while (flag[1-self]==1 && turn==1-self);
   
 }
@@ -26,7 +26,7 @@ void lock(int self)
 void unlock(int self)
 {
     count--; 
-    printf("\nValue of count: %d\n",count);
+    printf("\n\tValue of count: %d\n\n",count);
     flag[self] = 0;
 }
 
