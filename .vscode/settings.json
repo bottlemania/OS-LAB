@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "dpp_chop1": "c",
+        "semaphore.h": "c",
+        "unistd.h": "c"
+    }
+}
