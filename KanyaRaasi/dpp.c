@@ -29,7 +29,7 @@ void test(int phil_num)
 }
 
 // take up chopsticks
-void take_fork(int phil_num)
+void take_chopstick(int phil_num)
 {
     sem_wait(&mutex);   // activate mutual exclusion
 
@@ -50,7 +50,7 @@ void take_fork(int phil_num)
 
     // progress only when both forks are available
 
-    printf("----Philosopher %d has both forks %d and %d\n",phil_num + 1, LEFT + 1, phil_num + 1);
+    printf("----Philosopher %d has both chopsticks %d and %d\n",phil_num + 1, LEFT + 1, phil_num + 1);
 
     state[phil_num] = EATING;
 
@@ -62,7 +62,7 @@ void take_fork(int phil_num)
 
 
 // put down chopsticks
-void put_fork(int phil_num)
+void put_chopstick(int phil_num)
 {
     sem_wait(&mutex);   // activate mutual exclusion
 
@@ -71,7 +71,7 @@ void put_fork(int phil_num)
     sem_post(&chopstick[LEFT]);
     sem_post(&chopstick[phil_num]);
     
-    printf("----Philosopher %d puts down both forks %d and %d \n",phil_num + 1, LEFT + 1, phil_num + 1);
+    printf("----Philosopher %d puts down both chopsticks %d and %d \n",phil_num + 1, LEFT + 1, phil_num + 1);
 
     // change philosopher state to thinking
     state[phil_num] = THINKING;
@@ -92,11 +92,11 @@ void *philosopher(void *num)
 
         sleep(2);
 
-        take_fork(*i);
+        take_chopstick(*i);
 
         sleep(2);
 
-        put_fork(*i);
+        put_chopstick(*i);
     }
 }
 
