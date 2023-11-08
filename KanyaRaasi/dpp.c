@@ -23,7 +23,7 @@ void test(int phil_num)
     {
         sleep(2);
         // ensures the chopsticks released when not in use
-        sem_post(&chopstick[LEFT]);
+        sem_post(&chopstick[LEFT]); // like a signal function
         sem_post(&chopstick[phil_num]);
     }
 }
