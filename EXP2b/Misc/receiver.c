@@ -15,15 +15,19 @@ int main()
     char choice[10];
     key = ftok("progfile", 65);
     msgid = msgget(key, 0666 | IPC_CREAT);
+
     printf("Read Data : ");
+    
     do{
     printf("\nEnter the type of the message: ");
     scanf("%d",&type);
     msgrcv(msgid, &message, sizeof(message),type, 0);
     printf("\nMessage is : %s \n", message.mesg_text);
+
     printf("Do you want to continue: ");
     scanf("%s",choice);
     }while(strcmp(choice,"no")!=0);
+
     msgctl(msgid, IPC_RMID, NULL);
     return 0;
 }

@@ -13,6 +13,7 @@ void* server_process(void* arg){
         server=1;
         turn=0;
         while(client==1&&turn==0);
+
         //critical
         printf("\nSERVER: Total available seats= %d\t\tBooked Seats= %d",total,booked);
         int choice;
@@ -33,6 +34,7 @@ void* client_process(void* arg){
         client=1;
         turn=1;
         while(server==1&&turn==1);
+        
         //critical
         printf("\nCLIENT: Total available seats= %d\t\tBooked Seats= %d",total,booked);
         int choice;

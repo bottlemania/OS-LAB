@@ -12,8 +12,10 @@ char *shm, *s;
 key = 5678;
 shmid = shmget(key, SHMSZ, 0666);
 shm = (char*)shmat(shmid, NULL, 0);
+
 for (s = shm; *s != '\0'; s++)
 putchar(*s);
+
 *shm = '*';
 exit(0);
 }

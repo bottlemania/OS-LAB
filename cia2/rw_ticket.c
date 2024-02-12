@@ -26,7 +26,9 @@ void *reader(){
         if (readcount == 1)
             sem_wait(&rw_mutex);
         sem_post(&mutex);
+
         printf("\nTicket value = %d", ticket);
+
         sem_wait(&mutex);
         readcount--;
         if (readcount == 0)
@@ -42,12 +44,14 @@ void *writer(){
     {
         sleep(3);
         sem_wait(&rw_mutex);
+
         printf("\nEnter b to book, c to cancel : ");
         scanf(" %c", &op);
         if (op == 'b')
             book();
         if (op == 'c')
             cancel();
+            
         sem_post(&rw_mutex);
     }
 }

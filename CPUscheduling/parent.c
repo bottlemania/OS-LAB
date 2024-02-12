@@ -20,10 +20,9 @@ int main(){
 	scanf("%d",&n);
 	
 	//long unsigned int shareSize=sizeof(struct process *)*4000000000;
-	int shmid = shmget(key,sizeof(struct process *),IPC_CREAT|0666);
+	int shmid = shmget(key,10000,IPC_CREAT|0666);
 	
-	
-	p=(struct process *)shmat(shmid,NULL,0);
+	p=shmat(shmid,NULL,0);
 	
 	for(i=0;i<n;i++){
 		printf("\nEnter details of process %d:\n",i+1);
@@ -36,8 +35,7 @@ int main(){
 		p[i].ct=p[i].tat=p[i].wt=0;
 		p[i].rt=0;
 	}
-	while(1){	sleep(1); }
-	
+	shmdt(p);
 	return 0;
 }
 	

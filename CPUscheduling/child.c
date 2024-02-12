@@ -52,10 +52,13 @@ void srtf(struct process *p,int n)
 {
     int i,j,k,l,m;
     int rem_bt[n];
+
     for(i=0;i<n;i++)
         rem_bt[i]=p[i].bt;
+
     int t=0;
     int flag=0;
+    
     while(1)
     {
         flag=0;
@@ -127,13 +130,13 @@ void print_gantt_chart(struct process *p, int n)
 int main(){
 	int i,n;
 	struct process *p;
-	key_t key=3174;
-	int shmid = shmget(key,sizeof(struct process *),IPC_CREAT|0666);
+	key_t key=7888;
+	int shmid = shmget(key,10000,IPC_CREAT|0666);
 	
-	p=(struct process *)shmat(shmid,NULL,0);
+	p=shmat(shmid,NULL,0);
 	printf("Enter number of processes:");
 	scanf("%d",&n);
-	fcfs(p,n);
+	srtf(p,n);
     	printf("\nGantt Chart:\n\n");
     	for (i = 0; i < n; i++) {
 		printf("P%d(%d-%d)", p[i].pid, p[i].ct-p[i].bt, p[i].ct);

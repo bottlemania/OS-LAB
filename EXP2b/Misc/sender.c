@@ -2,12 +2,14 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <string.h>
+
 #define MAX 10
 // structure for message queue
 struct mesg_buffer {
     long mesg_type;
     char mesg_text[100];
 } message;
+
 int main()
 {
     key_t key;
@@ -21,6 +23,7 @@ int main()
     printf("Writing Data : ");
     printf("\nEnter the message:");
     scanf("%s",message.mesg_text);
+
     do
     {
     printf("\nEnter the type for message:");
@@ -32,5 +35,6 @@ int main()
     printf("\nEnter the message:");
     scanf("%s",message.mesg_text);
     }while(strcmp(message.mesg_text,"end")!=0);
+    
     return 0;
 }

@@ -38,9 +38,11 @@ void *produce(){
         item = produce_item();
         sem_wait(&emptyCount); // to see whether empty spaces available
         sem_wait(&mutex);      // to ensure that consumer is not using the buffer
+
         printf("\nProducer entering the critical section");
         insert_item(item);
         printf("\nProducer inserting an item[%d] at %d", item, rear);
+
         sem_post(&mutex);     // release mutex to let consumer to access buf
         sem_post(&fullCount); // to let consumer take the new data
     }
@@ -54,9 +56,11 @@ void *consumer(){
         sleep(5);
         sem_wait(&fullCount); // to see whether there is data in buffer
         sem_wait(&mutex);     // to ensure that producer is not using the buffer
+
         printf("\nConsumer entering the critical region");
         item = remove_item();
         printf("\nConsumer consumed item[%d]", item);
+        
         sem_post(&mutex); // release mutual exclusion
         printf("\nConsumer leaving the critical region");
         sem_post(&emptyCount); // Increment no of empty slots and
@@ -74,7 +78,9 @@ int main(){
     
     pthread_create(&p_tid, NULL, produce, 0);
     pthread_create(&c_tid, NULL, consumer, 0);
+
     pthread_join(p_tid, NULL);
     pthread_join(c_tid, NULL);
+
     return 0;
 }

@@ -102,15 +102,18 @@ int main()
             finish[k] = true;
             printf(" P%d \t", k);
         }
+
         int completed = 0;
         for (i = 0; i < p; i++)
             if (finish[i])
                 completed++;
+                
         if (completed == p)
         {
             printf("Safety condition acheived\n");
             return;
         }
+
         round++;
     }
     printf("Dead lock\n");
